@@ -17,17 +17,22 @@ public class EventController {
     }
 
     @GetMapping("")
-    public List<Event> getEvents(){
+    public List<Event> getEvents() {
         return this.eventService.getEvents();
     }
 
     @GetMapping("/{id}")
-    public Event getEvent(@PathVariable Long id){
+    public Event getEvent(@PathVariable Long id) {
         return this.eventService.getEvent(id);
     }
 
     @PostMapping("")
     public Event addEvent(@RequestBody EventDTO event) {
         return this.eventService.saveEvent(event);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteEvent(@PathVariable Long id) {
+        this.eventService.deleteEvent(id);
     }
 }
