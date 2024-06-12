@@ -19,4 +19,39 @@ public class Event {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

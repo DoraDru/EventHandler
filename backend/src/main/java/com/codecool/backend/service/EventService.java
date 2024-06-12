@@ -6,6 +6,8 @@ import com.codecool.backend.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EventService {
     private final EventRepository eventRepository;
@@ -13,6 +15,14 @@ public class EventService {
     @Autowired
     public EventService(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
+    }
+
+    public List<Event> getEvents(){
+        return this.eventRepository.findAll();
+    }
+
+    public Event getEvent(Long id){
+        return this.eventRepository.getEventById(id);
     }
 
     public Event saveEvent(EventDTO event) {
