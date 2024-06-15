@@ -5,6 +5,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { EventService } from './events/event.service';
 import { HeaderComponent } from './header/header.component';
 import { EventsComponent } from './events/events/events.component';
+import { HomeComponent } from './home/home.component';
+import { EventDetailComponent } from './events/event-detail/event-detail.component';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,8 @@ import { EventsComponent } from './events/events/events.component';
     NgFor,
     HeaderComponent,
     EventsComponent,
+    HomeComponent,
+    EventDetailComponent
   ],
   providers: [EventService],
   templateUrl: './app.component.html',
