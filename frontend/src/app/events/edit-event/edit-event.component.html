@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Event name: </label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="date">Date: </label>
+            <input
+              type="date"
+              id="date"
+              class="form-control"
+              formControlName="date"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="type">Type: </label>
+            <select
+              name="type"
+              id="type"
+              class="form-control"
+              formControlName="type"
+            >
+              Type
+              <option value="SPORT">Sport</option>
+              <option value="FOOD">Food</option>
+              <option value="ART">ART</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description: </label>
+            <textarea
+              type="text"
+              id="description"
+              class="form-control"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+  </div>
+</div>

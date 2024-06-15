@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { EventsComponent } from './events/events/events.component';
 import { HomeComponent } from './home/home.component';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
+import { EditEventComponent } from './events/edit-event/edit-event.component';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ import { EventDetailComponent } from './events/event-detail/event-detail.compone
     HeaderComponent,
     EventsComponent,
     HomeComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    EditEventComponent
   ],
   providers: [EventService],
   templateUrl: './app.component.html',
