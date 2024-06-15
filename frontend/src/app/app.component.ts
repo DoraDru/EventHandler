@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgFor, NgIf } from '@angular/common';
 import { EventService } from './events/event.service';
@@ -11,6 +11,7 @@ import { EventsComponent } from './events/events/events.component';
   standalone: true,
   imports: [
     RouterOutlet,
+    RouterModule,
     HttpClientModule,
     NgIf,
     NgFor,
