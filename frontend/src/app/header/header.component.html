@@ -16,9 +16,11 @@
       (window:resize)="collapsed = true"
     >
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="/events">Events</a></li>
-        <li routerLinkActive="active">
-          <a routerLink="#">Placeholder</a>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="/events">Events</a>
+        </li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="events/new">Create Event</a>
         </li>
       </ul>
     </div>
