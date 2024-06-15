@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from '../event.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EventModel } from '../event.model';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-event-detail',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   providers: [EventService],
   templateUrl: './event-detail.component.html',
   styleUrl: './event-detail.component.css',

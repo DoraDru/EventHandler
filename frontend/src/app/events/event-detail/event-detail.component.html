@@ -1,3 +1,5 @@
-<h1>{{actualEvent.name}}</h1>
-<h2>{{actualEvent.date}}</h2>
-<h3>{{actualEvent.description}}</h3>
+<div class="row text-center" *ngIf="actualEvent">
+  <h1>{{ actualEvent.name }}</h1>
+  <h2>{{ actualEvent.date }}</h2>
+  <h3>{{ actualEvent.description }}</h3>
+</div>
