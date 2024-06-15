@@ -21,5 +21,15 @@ export class EventService {
     );
   }
 
-  
+  getEventById(id: String): Observable<EventModel> {
+    return this.http.get<EventModel>(this.url + '/' + id).pipe(
+      map((event) => {
+        return {
+          ...event,
+          date: new Date(event.date),
+          id: Number(event.id),
+        };
+      })
+    );
+  }
 }
