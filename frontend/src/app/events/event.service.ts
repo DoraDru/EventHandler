@@ -36,4 +36,13 @@ export class EventService {
       })
     );
   }
+
+  addEvent(event: {
+    name: string;
+    date: Date;
+    type: string;
+    description: string;
+  }): void {
+    this.http.post(this.url, event).subscribe();
+  }
 }

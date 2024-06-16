@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { EventService } from '../event.service';
 import { LowerCasePipe, NgFor } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-event',
@@ -20,7 +21,7 @@ export class EditEventComponent implements OnInit {
   form!: FormGroup;
   eventTypes: string[] = [];
 
-  constructor(private service: EventService) {}
+  constructor(private service: EventService, private router: Router) {}
 
   ngOnInit(): void {
     this.service.getEventTypes().subscribe((types) => {
@@ -40,6 +41,15 @@ export class EditEventComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form);
+    this.service.addEvent(this.form.value);
+    this.router.navigate(['/']);
+  }
+
+  onClear() {
+    this.form.reset();
+  }
+
+  onCancel() {
+    this.router.navigate(['/']);
   }
 }

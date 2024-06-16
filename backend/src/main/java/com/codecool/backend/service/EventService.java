@@ -18,11 +18,11 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-    public List<Event> getEvents(){
+    public List<Event> getEvents() {
         return this.eventRepository.findAll();
     }
 
-    public Event getEvent(Long id){
+    public Event getEvent(Long id) {
         return this.eventRepository.getEventById(id);
     }
 
@@ -35,8 +35,21 @@ public class EventService {
         return this.eventRepository.save(newEvent);
     }
 
+
+    //temporary
+    public void saveEvents(List<EventDTO> events) {
+        for (EventDTO event : events) {
+            Event newEvent = new Event();
+            newEvent.setName(event.getName());
+            newEvent.setDate(event.getDate());
+            newEvent.setType(event.getType());
+            newEvent.setDescription(event.getDescription());
+            this.eventRepository.save(newEvent);
+        }
+    }
+
     @Transactional
-    public void deleteEvent(Long id){
+    public void deleteEvent(Long id) {
         this.eventRepository.deleteEventById(id);
     }
 }
