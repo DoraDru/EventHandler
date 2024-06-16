@@ -9,6 +9,6 @@ export const routes: Routes = [
   { path: 'events', component: EventsComponent },
   { path: 'events/new', component: EditEventComponent },
   { path: 'events/:id', component: EventDetailComponent },
-  { path: 'events/:id/edit', component: EventDetailComponent },
+  { path: 'events/:id/edit', component: EditEventComponent },
   { path: '**', redirectTo: '' },
 ];

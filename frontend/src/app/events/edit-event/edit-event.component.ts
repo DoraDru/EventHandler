@@ -6,29 +6,42 @@ import {
   Validators,
 } from '@angular/forms';
 import { EventService } from '../event.service';
-import { LowerCasePipe, NgFor } from '@angular/common';
-import { Router } from '@angular/router';
+import { DatePipe, LowerCasePipe, NgFor, NgIf } from '@angular/common';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { EventModel } from '../event.model';
 
 @Component({
   selector: 'app-edit-event',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor, LowerCasePipe],
+  imports: [ReactiveFormsModule, NgFor, NgIf, LowerCasePipe],
   providers: [EventService],
   templateUrl: './edit-event.component.html',
   styleUrl: './edit-event.component.css',
 })
 export class EditEventComponent implements OnInit {
+  todayDate;
   form!: FormGroup;
   eventTypes: string[] = [];
+  eventId?: number;
+  editedEvent?: EventModel;
 
-  constructor(private service: EventService, private router: Router) {}
+  constructor(
+    private service: EventService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.todayDate = new Date().toISOString().split('T')[0];
+  }
 
   ngOnInit(): void {
     this.service.getEventTypes().subscribe((types) => {
       this.eventTypes = types;
     });
 
-    this.initForm();
+    this.route.params.subscribe((params: Params) => {
+      this.eventId = +params['id'];
+      this.initForm();
+    });
   }
 
   private initForm() {
@@ -38,6 +51,21 @@ export class EditEventComponent implements OnInit {
       type: new FormControl('', [Validators.required]),
       description: new FormControl(''),
     });
+
+    if (this.eventId) {
+      this.service.getEventById(this.eventId.toString()).subscribe((event) => {
+        this.editedEvent = event;
+      });
+      if (this.editedEvent) {
+        const datePipe = new DatePipe('en-US');
+        const formattedDate = datePipe.transform(
+          this.editedEvent.date,
+          'yyyy-MM-dd'
+        );
+        const event = { ...this.editedEvent, date: formattedDate };
+        this.form.patchValue(event);
+      }
+    }
   }
 
   onSubmit() {
@@ -50,6 +78,7 @@ export class EditEventComponent implements OnInit {
   }
 
   onCancel() {
+    this.onClear();
     this.router.navigate(['/']);
   }
 }

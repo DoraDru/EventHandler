@@ -4,13 +4,16 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="name">Event name: </label>
+            <label for="name">Event name*: </label>
             <input
               type="text"
               id="name"
               class="form-control"
               formControlName="name"
             />
+            <span class="help-block" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+              This field is required
+            </span>
           </div>
         </div>
       </div>
@@ -18,13 +21,17 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="date">Date: </label>
+            <label for="date">Date*: </label>
             <input
               type="date"
               id="date"
               class="form-control"
               formControlName="date"
+              [min]="todayDate"
             />
+            <span class="help-block" *ngIf="form.get('date')?.touched && form.get('date')?.invalid">
+              This field is required
+            </span>
           </div>
         </div>
       </div>
@@ -32,7 +39,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="type">Type: </label>
+            <label for="type">Type*: </label>
             <select
               name="type"
               id="type"
@@ -42,6 +49,9 @@
               Type
               <option *ngFor="let type of eventTypes" [value]="type">{{type | lowercase}}</option>
             </select>
+            <span class="help-block" *ngIf="form.get('type')?.touched && form.get('type')?.invalid">
+              This field is required
+            </span>
           </div>
         </div>
       </div>

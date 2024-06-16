@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../event.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router} from '@angular/router';
 import { EventModel } from '../event.model';
 import { NgIf } from '@angular/common';
 
@@ -8,7 +8,7 @@ import { NgIf } from '@angular/common';
   selector: 'app-event-detail',
   standalone: true,
   imports: [NgIf],
-  providers: [EventService],
+  providers: [EventService, Router],
   templateUrl: './event-detail.component.html',
   styleUrl: './event-detail.component.css',
 })
@@ -28,5 +28,9 @@ export class EventDetailComponent implements OnInit {
         this.actualEvent = event;
       });
     });
+  }
+
+  onEdit(): void{
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 }
