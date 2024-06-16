@@ -40,9 +40,7 @@
               formControlName="type"
             >
               Type
-              <option value="SPORT">Sport</option>
-              <option value="FOOD">Food</option>
-              <option value="ART">ART</option>
+              <option *ngFor="let type of eventTypes" [value]="type">{{type | lowercase}}</option>
             </select>
           </div>
         </div>

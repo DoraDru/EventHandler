@@ -21,7 +21,11 @@ export class EventService {
     );
   }
 
-  getEventById(id: String): Observable<EventModel> {
+  getEventTypes(): Observable<string[]> {
+    return this.http.get<string[]>(this.url + '/types');
+  }
+
+  getEventById(id: string): Observable<EventModel> {
     return this.http.get<EventModel>(this.url + '/' + id).pipe(
       map((event) => {
         return {
