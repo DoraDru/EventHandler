@@ -41,6 +41,9 @@ export class EditEventComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.eventId = +params['id'];
       this.initForm();
+      if (this.eventId) {
+        this.loadEvent();
+      }
     });
   }
 
@@ -51,20 +54,22 @@ export class EditEventComponent implements OnInit {
       type: new FormControl('', [Validators.required]),
       description: new FormControl(''),
     });
+  }
 
+  private loadEvent() {
     if (this.eventId) {
       this.service.getEventById(this.eventId).subscribe((event) => {
         this.editedEvent = event;
+        if (this.editedEvent) {
+          const datePipe = new DatePipe('en-US');
+          const formattedDate = datePipe.transform(
+            this.editedEvent.date,
+            'yyyy-MM-dd'
+          );
+          const event = { ...this.editedEvent, date: formattedDate };
+          this.form.patchValue(event);
+        }
       });
-      if (this.editedEvent) {
-        const datePipe = new DatePipe('en-US');
-        const formattedDate = datePipe.transform(
-          this.editedEvent.date,
-          'yyyy-MM-dd'
-        );
-        const event = { ...this.editedEvent, date: formattedDate };
-        this.form.patchValue(event);
-      }
     }
   }
 
