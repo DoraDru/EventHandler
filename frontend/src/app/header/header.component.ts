@@ -4,8 +4,6 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [NgFor, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })

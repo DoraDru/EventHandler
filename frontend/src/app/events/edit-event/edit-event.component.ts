@@ -12,9 +12,6 @@ import { EventModel } from '../event.model';
 
 @Component({
   selector: 'app-edit-event',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgFor, NgIf, LowerCasePipe],
-  providers: [EventService],
   templateUrl: './edit-event.component.html',
   styleUrl: './edit-event.component.css',
 })

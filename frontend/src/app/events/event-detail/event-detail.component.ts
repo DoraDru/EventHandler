@@ -6,9 +6,6 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-event-detail',
-  standalone: true,
-  imports: [NgIf],
-  providers: [EventService, Router],
   templateUrl: './event-detail.component.html',
   styleUrl: './event-detail.component.css',
 })
