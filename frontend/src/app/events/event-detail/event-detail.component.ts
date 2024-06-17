@@ -23,7 +23,7 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      let id: string = params['id'];
+      let id = params['id'];
       this.eventService.getEventById(id).subscribe((event) => {
         this.actualEvent = event;
       });
@@ -32,5 +32,10 @@ export class EventDetailComponent implements OnInit {
 
   onEdit(): void{
     this.router.navigate(['edit'], {relativeTo: this.route});
+  }
+
+  onDelete(): void {
+    this.eventService.deleteEvent(this.actualEvent.id);
+    this.router.navigate(['/'], {relativeTo: this.route})
   }
 }
