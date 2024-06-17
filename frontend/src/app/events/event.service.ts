@@ -25,7 +25,7 @@ export class EventService {
     return this.http.get<string[]>(this.url + '/types');
   }
 
-  getEventById(id: string): Observable<EventModel> {
+  getEventById(id: number): Observable<EventModel> {
     return this.http.get<EventModel>(this.url + '/' + id).pipe(
       map((event) => {
         return {
@@ -44,5 +44,9 @@ export class EventService {
     description: string;
   }): void {
     this.http.post(this.url, event).subscribe();
+  }
+
+  deleteEvent(id: number){
+    this.http.delete(this.url + '/' + id).subscribe();
   }
 }

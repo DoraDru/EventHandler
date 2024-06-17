@@ -53,7 +53,7 @@ export class EditEventComponent implements OnInit {
     });
 
     if (this.eventId) {
-      this.service.getEventById(this.eventId.toString()).subscribe((event) => {
+      this.service.getEventById(this.eventId).subscribe((event) => {
         this.editedEvent = event;
       });
       if (this.editedEvent) {
