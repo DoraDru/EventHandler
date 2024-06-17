@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../event.service';
-import { ActivatedRoute, Params, Router} from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EventModel } from '../event.model';
 import { NgIf } from '@angular/common';
 
@@ -30,12 +30,15 @@ export class EventDetailComponent implements OnInit {
     });
   }
 
-  onEdit(): void{
-    this.router.navigate(['edit'], {relativeTo: this.route});
+  onEdit(): void {
+    this.router.navigate(['edit'], { relativeTo: this.route });
   }
 
   onDelete(): void {
-    this.eventService.deleteEvent(this.actualEvent.id);
-    this.router.navigate(['/'], {relativeTo: this.route})
+    if (confirm('Are you sure to delete this event?')) {
+      this.eventService.deleteEvent(this.actualEvent.id).subscribe(() => {
+        this.router.navigate(['/']);
+      });
+    }
   }
 }
