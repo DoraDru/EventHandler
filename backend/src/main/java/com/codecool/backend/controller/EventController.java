@@ -24,7 +24,7 @@ public class EventController {
     }
 
     @GetMapping("/types")
-    public List<EventType> getEventTypes(){
+    public List<EventType> getEventTypes() {
         return Arrays.asList(EventType.values());
     }
 
@@ -42,6 +42,11 @@ public class EventController {
     @PostMapping("/more")
     public void addEvent(@RequestBody List<EventDTO> events) {
         this.eventService.saveEvents(events);
+    }
+
+    @PutMapping("/{id}")
+    public Event updateEvent(@PathVariable Long id, @RequestBody Event event) {
+        return this.eventService.updateEvent(id, event);
     }
 
     @DeleteMapping("/{id}")

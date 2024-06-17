@@ -1,5 +1,6 @@
 package com.codecool.backend.service;
 
+import com.codecool.backend.errorhandling.event.InvalidEventException;
 import com.codecool.backend.model.Event;
 import com.codecool.backend.model.dto.EventDTO;
 import com.codecool.backend.repository.EventRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventService {
@@ -23,7 +25,7 @@ public class EventService {
     }
 
     public Event getEvent(Long id) {
-        return this.eventRepository.getEventById(id);
+        return getEventById(id);
     }
 
     public Event saveEvent(EventDTO event) {
@@ -33,6 +35,20 @@ public class EventService {
         newEvent.setType(event.getType());
         newEvent.setDescription(event.getDescription());
         return this.eventRepository.save(newEvent);
+    }
+
+    public Event updateEvent(Long id, Event event) {
+        if (id == event.getId()){
+            Event eventToUpdate = getEventById(id);
+            eventToUpdate.setName(event.getName());
+            eventToUpdate.setDate(event.getDate());
+            eventToUpdate.setType(event.getType());
+            eventToUpdate.setDescription(event.getDescription());
+
+            return this.eventRepository.save(eventToUpdate);
+        } else {
+            throw new IllegalArgumentException("Path variable id does not match the event id.");
+        }
     }
 
 
@@ -50,6 +66,17 @@ public class EventService {
 
     @Transactional
     public void deleteEvent(Long id) {
-        this.eventRepository.deleteEventById(id);
+        Event event = getEventById(id);
+        this.eventRepository.delete(event);
+    }
+
+    private Event getEventById(Long id) {
+        Optional<Event> event = this.eventRepository.getEventById(id);
+
+        if (event.isPresent()) {
+            return event.get();
+        } else {
+            throw new InvalidEventException(String.format("Event doesn't exist with id: %s", id));
+        }
     }
 }
