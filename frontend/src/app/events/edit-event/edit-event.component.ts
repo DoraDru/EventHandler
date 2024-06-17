@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
-  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { EventService } from '../event.service';
-import { DatePipe, LowerCasePipe, NgFor, NgIf } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EventModel } from '../event.model';
 
