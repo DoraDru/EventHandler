@@ -71,7 +71,7 @@
       </div>
 
       <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>
-      <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+      <button class="btn btn-primary" type="button" *ngIf="!editedEvent" (click)="onClear()">Clear</button>
       <button class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
     </form>
   </div>
