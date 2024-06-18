@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { EventService } from '../event.service';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -70,8 +66,13 @@ export class EditEventComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.addEvent(this.form.value);
-    this.router.navigate(['/']);
+    if (this.eventId) {
+      let updatedEvent = { ...this.form.value, id: this.eventId };
+      this.service.updateEvent(updatedEvent);
+    } else {
+      this.service.addEvent(this.form.value);
+      this.router.navigate(['/']);
+    }
   }
 
   onClear() {
