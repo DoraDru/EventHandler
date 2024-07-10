@@ -1,4 +1,4 @@
-package com.codecool.backend.model;
+package com.codecool.backend.model.event;
 
 import jakarta.persistence.*;
 

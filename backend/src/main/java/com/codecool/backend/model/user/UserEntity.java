@@ -1,4 +1,4 @@
-package com.codecool.backend.model;
+package com.codecool.backend.model.user;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;

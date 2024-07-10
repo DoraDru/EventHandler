@@ -1,9 +1,4 @@
-package com.codecool.backend.model.dto;
-
-import com.codecool.backend.model.EventType;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+package com.codecool.backend.model.event;
 
 import java.time.LocalDate;
 
