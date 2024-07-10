@@ -3,6 +3,9 @@ package com.codecool.backend.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class UserEntity {
     @Id
@@ -13,6 +16,9 @@ public class UserEntity {
     @Column(nullable = false)
     @Size(min = 8, max = 12, message = "Password must be between 8-12 character")
     private String password;
+    @Enumerated(EnumType.STRING)
+    private final Set<Role> roles = new HashSet<>();
+
 
     public long getId() {
         return id;
@@ -36,5 +42,13 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public boolean add(Role role) {
+        return getRoles().add(role);
     }
 }
