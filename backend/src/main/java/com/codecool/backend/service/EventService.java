@@ -1,8 +1,8 @@
 package com.codecool.backend.service;
 
 import com.codecool.backend.errorhandling.event.InvalidEventException;
-import com.codecool.backend.model.Event;
-import com.codecool.backend.model.dto.EventDTO;
+import com.codecool.backend.model.event.Event;
+import com.codecool.backend.model.event.EventDTO;
 import com.codecool.backend.repository.EventRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

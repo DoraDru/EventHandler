@@ -1,8 +1,8 @@
 package com.codecool.backend.service;
 
-import com.codecool.backend.model.Role;
-import com.codecool.backend.model.UserEntity;
-import com.codecool.backend.model.dto.UserDTO;
+import com.codecool.backend.model.user.Role;
+import com.codecool.backend.model.user.UserEntity;
+import com.codecool.backend.model.user.UserDTO;
 import com.codecool.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
