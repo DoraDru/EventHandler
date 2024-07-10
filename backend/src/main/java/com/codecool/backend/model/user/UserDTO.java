@@ -1,7 +1,5 @@
 package com.codecool.backend.model.user;
 
-import com.codecool.backend.model.user.Role;
-
 import java.util.HashSet;
 import java.util.Set;
 
