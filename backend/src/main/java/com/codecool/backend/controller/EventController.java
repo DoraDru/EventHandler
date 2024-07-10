@@ -1,8 +1,8 @@
 package com.codecool.backend.controller;
 
-import com.codecool.backend.model.Event;
-import com.codecool.backend.model.EventType;
-import com.codecool.backend.model.dto.EventDTO;
+import com.codecool.backend.model.event.Event;
+import com.codecool.backend.model.event.EventType;
+import com.codecool.backend.model.event.EventDTO;
 import com.codecool.backend.service.EventService;
 import org.springframework.web.bind.annotation.*;
 
