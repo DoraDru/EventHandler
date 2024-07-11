@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="name">Name: </label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+            <span
+              class="help-block"
+              *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
+            >
+              This field is required
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="password">Password: </label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              formControlName="password"
+            />
+            <span
+              class="help-block"
+              *ngIf="
+                form.get('password')?.touched &&
+                form.get('password')?.invalid &&
+                form.get('password')?.errors?.['minlength'] ||
+                form.get('password')?.errors?.['maxlength']
+              "
+            >
+              This field is required
+            </span>
+            <span
+              class="help-block"
+              *ngIf="
+            form.get('password')?.errors?.['minlength'] ||
+            form.get('password')?.errors?.['maxlength']"
+            >
+              Password must be between 8 and 12 characters.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="confirmPassword">Confirm password: </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              class="form-control"
+              formControlName="confirmPassword"
+            />
+            <span
+              class="help-block"
+              *ngIf="
+                form.get('confirmPassword')?.touched &&
+                form.get('confirmPassword')?.invalid
+              "
+            >
+              This field is required
+            </span>
+            <span
+              class="help-block"
+              *ngIf="
+                form.get('confirmPassword')?.errors?.['minlength'] ||
+                form.get('confirmPassword')?.errors?.['maxlength']"
+            >
+              Password must be between 8 and 12 characters.
+            </span>
+            <span
+              class="help-block"
+              *ngIf="form.errors?.['passwordMismatch'] &&
+              form.get('confirmPassword')?.touched"
+            >
+              Passwords do not match.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-success" type="submit" [disabled]="!form.valid">
+        Signup
+      </button>
+      <button class="btn btn-danger" type="button" (click)="onCancel()">
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>
