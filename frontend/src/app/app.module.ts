@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app.routes";
 import { ShortenTextPipe } from "./events/pipes/shorten.pipe";
+import { LoginComponent } from './user/login/login.component';
+import { RegistrationComponent } from './user/registration/registration.component';
+import { UserService } from "./user/user.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { ShortenTextPipe } from "./events/pipes/shorten.pipe";
     HomeComponent,
     EventDetailComponent,
     EditEventComponent,
-    ShortenTextPipe
+    ShortenTextPipe,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,7 @@ import { ShortenTextPipe } from "./events/pipes/shorten.pipe";
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [EventService],
+  providers: [EventService, UserService],
   bootstrap: [AppComponent],
 
 })
