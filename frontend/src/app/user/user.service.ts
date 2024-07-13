@@ -27,15 +27,20 @@ export class UserService {
       .subscribe();
   }
 
+  isAuthenticated(): boolean {
+    return !!this.user.value;
+  }
+
+  logout() {
+    this.user.next(null);
+    localStorage.removeItem('userData');
+  }
+
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occured!';
     if (errorRes.status === 401) {
       errorMessage = 'Invalid username or password!';
     }
     return throwError(() => new Error(errorMessage));
-  }
-
-  isAuthenticated(): boolean {
-    return !!this.user.value;
   }
 }
