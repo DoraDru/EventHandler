@@ -7,13 +7,14 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { NgModule } from '@angular/core';
 import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
+import { AuthGuard } from './auth/auth.guard';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'events', component: EventsComponent },
-  { path: 'events/new', component: EditEventComponent },
+  { path: 'events/new', component: EditEventComponent, canActivate: [AuthGuard] },
   { path: 'events/:id', component: EventDetailComponent },
-  { path: 'events/:id/edit', component: EditEventComponent },
+  { path: 'events/:id/edit', component: EditEventComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: RegistrationComponent },
   { path: 'signin', component: LoginComponent },
   { path: 'error-page', component: ErrorPageComponent },
