@@ -19,16 +19,16 @@
         <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a routerLink="/events">Events</a>
         </li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <li *ngIf="isAuthenticated" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a routerLink="/events/new">Create Event</a>
         </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <li *ngIf="!isAuthenticated" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a routerLink="/signin">Login</a>
         </li>
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <li *ngIf="!isAuthenticated" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a routerLink="/signup">Create Account</a>
         </li>
       </ul>
