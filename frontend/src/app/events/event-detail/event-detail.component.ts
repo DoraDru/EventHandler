@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from '../event.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { EventModel } from '../event.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-event-detail',
@@ -20,8 +21,15 @@ export class EventDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       let id = params['id'];
-      this.eventService.getEventById(id).subscribe((event) => {
-        this.actualEvent = event;
+      this.eventService.getEventById(id).subscribe({
+        next: (data) => {
+          this.actualEvent = data;
+        },
+        error: (error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            this.router.navigate(['/error-page']);
+          }
+        },
       });
     });
   }
@@ -32,8 +40,13 @@ export class EventDetailComponent implements OnInit {
 
   onDelete(): void {
     if (confirm('Are you sure to delete this event?')) {
-      this.eventService.deleteEvent(this.actualEvent.id).subscribe(() => {
-        this.router.navigate(['/']);
+      this.eventService.deleteEvent(this.actualEvent.id).subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: () => {
+          this.router.navigate(['/error-page']);
+        },
       });
     }
   }

@@ -1,2 +1,2 @@
-<h1 *ngIf="!userSub">Welcome here!</h1>
-<h1 *ngIf="userSub">Welcome {{currentUser?.userName}}!</h1>
+<h1 *ngIf="!currentUser">Welcome here!</h1>
+<h1 *ngIf="currentUser">Welcome {{currentUser.userName}}!</h1>
