@@ -1,5 +1,3 @@
-export interface AuthenticatedUser {
-  userName: string;
-  jwt: string;
-  roles: string[];
+export class AuthenticatedUser {
+  constructor(public userName: string, public jwt: string, public roles: string[]) {}
 }
