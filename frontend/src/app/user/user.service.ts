@@ -27,6 +27,23 @@ export class UserService {
       .subscribe();
   }
 
+  autologin() {
+    const userData: { userName: string; jwt: string; roles: string[] } =
+      JSON.parse(localStorage.getItem('userData') || '{}');
+
+    if (!userData) {
+      return;
+    }
+
+    const loadedUser = new AuthenticatedUser(
+      userData.userName,
+      userData.jwt,
+      userData.roles
+    );
+
+    this.user.next(loadedUser);
+  }
+
   isAuthenticated(): boolean {
     return !!this.user.value;
   }
