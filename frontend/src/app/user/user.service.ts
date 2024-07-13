@@ -31,7 +31,7 @@ export class UserService {
     const userData: { userName: string; jwt: string; roles: string[] } =
       JSON.parse(localStorage.getItem('userData') || '{}');
 
-    if (!userData) {
+    if (!userData || !userData.jwt) {
       return;
     }
 
