@@ -59,7 +59,7 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth
-                                .requestMatchers("/api/events").hasRole("USER")
+                                .requestMatchers("/api/events/**").hasRole("USER")
                                 .requestMatchers("/api/users/**").permitAll());
 
         http.authenticationProvider(authenticationProvider());
