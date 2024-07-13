@@ -10,4 +10,8 @@ export class UserService {
   register(name: string, password: string): void {
     this.http.post(`${this.url}/signup`, { name, password }).subscribe();
   }
+
+  login(name: string, password: string) {
+    this.http.post(`${this.url}/signin`, { name, password }).subscribe();
+  }
 }

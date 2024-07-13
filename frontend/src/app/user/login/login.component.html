@@ -1,0 +1,56 @@
+<div class="row custom-center">
+  <div class="col-xs-6 col-md-4 custom-border">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name: </label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            />
+            <span
+              class="help-block"
+              *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
+            >
+              This field is required
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="password">Password: </label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              formControlName="password"
+            />
+            <span
+              class="help-block"
+              *ngIf="
+                form.get('password')?.touched && form.get('password')?.invalid
+              "
+            >
+              This field is required
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row custom-center">
+        <button class="btn btn-success" type="submit" [disabled]="!form.valid">
+          Login
+        </button>
+        <button class="btn btn-danger" type="button" (click)="onCancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
