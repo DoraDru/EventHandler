@@ -15,7 +15,7 @@ export class UserService {
   }
 
   login(name: string, password: string) {
-    this.http
+    return this.http
       .post<AuthenticatedUser>(`${this.url}/signin`, { name, password })
       .pipe(
         catchError(this.handleError),
@@ -24,14 +24,17 @@ export class UserService {
           localStorage.setItem('userData', JSON.stringify(res));
         })
       )
-      .subscribe();
   }
 
   autologin() {
+    if (this.user.value) {
+      return;
+    }
+
     const userData: { userName: string; jwt: string; roles: string[] } =
       JSON.parse(localStorage.getItem('userData') || '{}');
 
-    if (!userData || !userData.jwt) {
+    if (this.isAuthenticated()) {
       return;
     }
 

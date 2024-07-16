@@ -21,7 +21,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-  this.userService.login(this.form.get('name')?.value, this.form.get('password')?.value)
+    if (!this.form.valid) {
+      return;
+    }
+
+    const password = this.form.get('password')?.value;
+    const name = this.form.get('name')?.value;
+
+    this.userService.login(name, password).subscribe();
+    this.form.reset();
+    this.router.navigate(['/'])
   }
 
   onCancel() {

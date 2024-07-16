@@ -2,7 +2,6 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpParams,
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -18,6 +17,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return this.userService.user.pipe(
+      take(1),
       exhaustMap((user) => {
         if (user && user.jwt) {
           req = req.clone({
