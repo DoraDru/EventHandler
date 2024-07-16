@@ -1,6 +1,11 @@
 <div class="row custom-center">
+
+  <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+
   <div class="col-xs-6 col-md-4 custom-border">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onLogin()">
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
@@ -43,7 +48,7 @@
         </div>
       </div>
 
-      <div class="row custom-center">
+      <div class="row custom-center-button">
         <button class="btn btn-success" type="submit" [disabled]="!form.valid">
           Login
         </button>

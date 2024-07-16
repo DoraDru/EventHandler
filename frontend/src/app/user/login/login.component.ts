@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
+  errorMessage = '';
 
   constructor(private router: Router, private userService: UserService) {}
 
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onLogin() {
     if (!this.form.valid) {
       return;
     }
@@ -28,9 +29,16 @@ export class LoginComponent implements OnInit {
     const password = this.form.get('password')?.value;
     const name = this.form.get('name')?.value;
 
-    this.userService.login(name, password).subscribe();
-    this.form.reset();
-    this.router.navigate(['/'])
+    this.userService.login(name, password).subscribe({
+      next: () => {
+        this.form.reset();
+        this.errorMessage = '';
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        this.errorMessage = error;
+      },
+    });
   }
 
   onCancel() {
