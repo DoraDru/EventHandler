@@ -10,8 +10,8 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  register(name: string, password: string): void {
-    this.http.post(`${this.url}/signup`, { name, password }).subscribe();
+  register(name: string, password: string) {
+    return this.http.post(`${this.url}/signup`, { name, password });
   }
 
   login(name: string, password: string) {
