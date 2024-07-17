@@ -23,7 +23,7 @@ export class UserService {
           this.user.next(res);
           localStorage.setItem('userData', JSON.stringify(res));
         })
-      )
+      );
   }
 
   autologin() {
@@ -43,6 +43,10 @@ export class UserService {
       userData.jwt,
       userData.roles
     );
+
+    if (!loadedUser.jwt) {
+      return;
+    }
 
     this.user.next(loadedUser);
   }
