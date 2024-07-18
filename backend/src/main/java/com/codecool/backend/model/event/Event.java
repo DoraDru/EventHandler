@@ -1,5 +1,6 @@
 package com.codecool.backend.model.event;
 
+import com.codecool.backend.model.user.UserEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -18,6 +19,8 @@ public class Event {
     private EventType type;
     @Column(columnDefinition = "TEXT")
     private String description;
+    @ManyToOne
+    private UserEntity user;
 
     public void setName(String name) {
         this.name = name;
@@ -33,6 +36,14 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
     public long getId() {
@@ -53,5 +64,9 @@ public class Event {
 
     public String getDescription() {
         return description;
+    }
+
+    public UserEntity getUser() {
+        return user;
     }
 }

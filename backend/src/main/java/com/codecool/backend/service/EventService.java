@@ -3,6 +3,7 @@ package com.codecool.backend.service;
 import com.codecool.backend.errorhandling.event.InvalidEventException;
 import com.codecool.backend.model.event.Event;
 import com.codecool.backend.model.event.EventDTO;
+import com.codecool.backend.model.user.UserEntity;
 import com.codecool.backend.repository.EventRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,12 @@ import java.util.Optional;
 @Service
 public class EventService {
     private final EventRepository eventRepository;
+    private final UserService userService;
 
     @Autowired
-    public EventService(EventRepository eventRepository) {
+    public EventService(EventRepository eventRepository, UserService userService) {
         this.eventRepository = eventRepository;
+        this.userService = userService;
     }
 
     public List<Event> getEvents() {
@@ -28,12 +31,15 @@ public class EventService {
         return getEventById(id);
     }
 
-    public Event saveEvent(EventDTO event) {
+    public Event saveEvent(EventDTO event, String userName) {
+        UserEntity user = userService.getUserByName(userName);
+
         Event newEvent = new Event();
         newEvent.setName(event.getName());
         newEvent.setDate(event.getDate());
         newEvent.setType(event.getType());
         newEvent.setDescription(event.getDescription());
+        newEvent.setUser(user);
         return this.eventRepository.save(newEvent);
     }
 

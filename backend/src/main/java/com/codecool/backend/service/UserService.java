@@ -33,7 +33,7 @@ public class UserService {
 
     }
 
-    private UserEntity getUserByName(String name) {
+    public UserEntity getUserByName(String name) {
         Optional<UserEntity> user = this.userRepository.getUserEntityByName(name);
         return user.orElseThrow(() -> new IllegalArgumentException(String.format("User not found: %s", name)));
     }
