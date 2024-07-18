@@ -22,6 +22,9 @@
         <li *ngIf="isAuthenticated" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a routerLink="/events/new">Create Event</a>
         </li>
+        <li *ngIf="isAuthenticated" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a routerLink="/events/myevents">My Events</a>
+        </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

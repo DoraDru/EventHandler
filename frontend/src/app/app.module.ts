@@ -15,6 +15,7 @@ import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { UserService } from './user/user.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { MyEventsComponent } from './events/my-events/my-events.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     ShortenTextPipe,
     LoginComponent,
     RegistrationComponent,
+    MyEventsComponent,
   ],
   imports: [
     BrowserModule,

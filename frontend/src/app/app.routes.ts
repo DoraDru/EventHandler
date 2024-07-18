@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { AuthGuard } from './auth/auth.guard';
+import { MyEventsComponent } from './events/my-events/my-events.component';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,7 @@ export const appRoutes: Routes = [
   { path: 'events/new', component: EditEventComponent, canActivate: [AuthGuard] },
   { path: 'events/:id', component: EventDetailComponent },
   { path: 'events/:id/edit', component: EditEventComponent, canActivate: [AuthGuard] },
+  { path: 'events/myevents', component: MyEventsComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: RegistrationComponent },
   { path: 'signin', component: LoginComponent },
   { path: 'error-page', component: ErrorPageComponent },
