@@ -12,11 +12,7 @@ export class EventService {
   getEvents(): Observable<EventModel[]> {
     return this.http.get<EventModel[]>(this.url).pipe(
       map((events) => {
-        return events.map((event) => ({
-          ...event,
-          date: new Date(event.date),
-          id: Number(event.id),
-        }));
+        return events.map((event) => this.convertEvent(event));
       })
     );
   }
@@ -26,15 +22,9 @@ export class EventService {
   }
 
   getEventById(id: number): Observable<EventModel> {
-    return this.http.get<EventModel>(`${this.url}/${id}`).pipe(
-      map((event) => {
-        return {
-          ...event,
-          date: new Date(event.date),
-          id: Number(event.id),
-        };
-      })
-    );
+    return this.http
+      .get<EventModel>(`${this.url}/${id}`)
+      .pipe(map((event) => this.convertEvent(event)));
   }
 
   addEvent(event: {
@@ -46,11 +36,15 @@ export class EventService {
     this.http.post(this.url, event).subscribe();
   }
 
-  updateEvent(event: EventModel){
+  updateEvent(event: EventModel) {
     this.http.put(`${this.url}/${event.id}`, event).subscribe();
   }
 
-  deleteEvent(id: number){
+  deleteEvent(id: number) {
     return this.http.delete(`${this.url}/${id}`);
+  }
+
+  private convertEvent(event: EventModel) {
+    return { ...event, date: new Date(event.date), id: Number(event.id) };
   }
 }
