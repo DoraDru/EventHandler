@@ -38,7 +38,9 @@ export class RegistrationComponent implements OnInit {
     this.userService
       .register(this.form.get('name')?.value, this.form.get('password')?.value)
       .subscribe({
-        next: () => {},
+        next: () => {
+          this.router.navigate(['/signin'])
+        },
         error: (error) => {
           console.log(error.error)
           this.errorMessage = error.error
