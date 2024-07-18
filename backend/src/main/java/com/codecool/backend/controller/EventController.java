@@ -30,6 +30,12 @@ public class EventController {
         return this.eventService.getEvents();
     }
 
+    @GetMapping("/byUser")
+    public List<EventDTO> getEventsByUser(HttpServletRequest request) {
+        String userName = getUserNameFromToken(request);
+        return this.eventService.getEventsByUser(userName);
+    }
+
     @GetMapping("/types")
     public List<EventType> getEventTypes() {
         return Arrays.asList(EventType.values());
@@ -42,9 +48,7 @@ public class EventController {
 
     @PostMapping("")
     public Event addEvent(@RequestBody EventDTO event, HttpServletRequest request) {
-        String jwt = this.authTokenFilter.parseJwt(request);
-        String userName = this.jwtUtils.getUserNameFromJWTToken(jwt);
-
+        String userName = getUserNameFromToken(request);
         return this.eventService.saveEvent(event, userName);
     }
 
@@ -55,12 +59,18 @@ public class EventController {
     }
 
     @PutMapping("/{id}")
-    public Event updateEvent(@PathVariable Long id, @RequestBody Event event) {
-        return this.eventService.updateEvent(id, event);
+    public Event updateEvent(@PathVariable Long id, @RequestBody Event event, HttpServletRequest request) {
+        String userName = getUserNameFromToken(request);
+        return this.eventService.updateEvent(id, event, userName);
     }
 
     @DeleteMapping("/{id}")
     public void deleteEvent(@PathVariable Long id) {
         this.eventService.deleteEvent(id);
+    }
+
+    private String getUserNameFromToken(HttpServletRequest request){
+        String jwt = this.authTokenFilter.parseJwt(request);
+        return this.jwtUtils.getUserNameFromJWTToken(jwt);
     }
 }

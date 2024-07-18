@@ -8,6 +8,7 @@ public class EventDTO {
     private LocalDate date;
     private EventType type;
     private String description;
+    private String ownerName;
 
     public String getName() {
         return name;
@@ -39,5 +40,13 @@ public class EventDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 }

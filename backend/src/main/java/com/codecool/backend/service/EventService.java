@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EventService {
@@ -25,6 +26,20 @@ public class EventService {
 
     public List<Event> getEvents() {
         return this.eventRepository.findAll();
+    }
+
+    public List<EventDTO> getEventsByUser(String userName){
+        UserEntity user = userService.getUserByName(userName);
+        List<Event> events  = eventRepository.getEventsByUser(user);
+        return events.stream().map(event -> {
+            EventDTO eventDto = new EventDTO();
+            eventDto.setDate(event.getDate());
+            eventDto.setName(event.getName());
+            eventDto.setType(event.getType());
+            eventDto.setDescription(event.getDescription());
+            eventDto.setOwnerName(event.getUser().getName());
+            return eventDto;
+        }).collect(Collectors.toList());
     }
 
     public Event getEvent(Long id) {
@@ -43,7 +58,8 @@ public class EventService {
         return this.eventRepository.save(newEvent);
     }
 
-    public Event updateEvent(Long id, Event event) {
+    public Event updateEvent(Long id, Event event, String userName) {
+        UserEntity user = userService.getUserByName(userName);
         if (id == event.getId()){
             Event eventToUpdate = getEventById(id);
             eventToUpdate.setName(event.getName());
