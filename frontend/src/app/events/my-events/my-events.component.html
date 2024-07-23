@@ -1,3 +1,22 @@
-<div *ngFor="let event of myEvents$ | async">
-  <p>{{event.name}}</p>
+<div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Date</th>
+        <th scope="col" class="edit-column">Edit</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let event of myEvents$ | async; let i = index">
+      <tr>
+        <th scope="row">{{i+1}}</th>
+        <td>{{event.name}}</td>
+        <td>{{event.date | date}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="onEdit(event.id)">Edit</button>
+          <button class="btn btn-danger" (click)="onDelete(event.id)">X</button>
+        </td>
+      </tr>
+  </table>
 </div>

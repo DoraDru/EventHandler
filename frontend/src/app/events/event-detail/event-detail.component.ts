@@ -34,20 +34,5 @@ export class EventDetailComponent implements OnInit {
     });
   }
 
-  onEdit(): void {
-    this.router.navigate(['edit'], { relativeTo: this.route });
-  }
-
-  onDelete(): void {
-    if (confirm('Are you sure to delete this event?')) {
-      this.eventService.deleteEvent(this.actualEvent.id).subscribe({
-        next: () => {
-          this.router.navigate(['/']);
-        },
-        error: () => {
-          this.router.navigate(['/error-page']);
-        },
-      });
-    }
-  }
+  
 }

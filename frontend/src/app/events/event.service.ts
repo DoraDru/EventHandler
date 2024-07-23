@@ -44,8 +44,8 @@ export class EventService {
     this.http.post(this.url, event).subscribe();
   }
 
-  updateEvent(event: EventModel) {
-    this.http.put(`${this.url}/${event.id}`, event).subscribe();
+  updateEvent(event: EventModel): Observable<EventModel> {
+    return this.http.put<EventModel>(`${this.url}/${event.id}`, event);
   }
 
   deleteEvent(id: number) {
