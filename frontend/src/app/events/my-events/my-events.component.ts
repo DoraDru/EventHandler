@@ -9,9 +9,9 @@ import { EventService } from '../event.service';
   styleUrl: './my-events.component.css'
 })
 export class MyEventsComponent {
-  myEvents$: Observable<EventModel>;
+  myEvents$: Observable<EventModel[]>;
 
-  constructor(private eventService: EventService){
-    this.myEvents$ = this.eventService.
+  constructor(private eventService: EventService) {
+    this.myEvents$ = this.eventService.getEventsByUser();
   }
 }

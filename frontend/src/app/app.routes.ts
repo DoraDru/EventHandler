@@ -13,10 +13,10 @@ import { MyEventsComponent } from './events/my-events/my-events.component';
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'events', component: EventsComponent },
+  { path: 'events/myevents', component: MyEventsComponent, canActivate: [AuthGuard] },
   { path: 'events/new', component: EditEventComponent, canActivate: [AuthGuard] },
   { path: 'events/:id', component: EventDetailComponent },
   { path: 'events/:id/edit', component: EditEventComponent, canActivate: [AuthGuard] },
-  { path: 'events/myevents', component: MyEventsComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: RegistrationComponent },
   { path: 'signin', component: LoginComponent },
   { path: 'error-page', component: ErrorPageComponent },

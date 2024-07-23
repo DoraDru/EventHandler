@@ -17,6 +17,14 @@ export class EventService {
     );
   }
 
+  getEventsByUser(): Observable<EventModel[]> {
+    return this.http.get<EventModel[]>(`${this.url}/byuser`).pipe(
+      map((events) => {
+        return events.map((event) => this.convertEvent(event))
+      })
+    );
+  }
+
   getEventTypes(): Observable<string[]> {
     return this.http.get<string[]>(this.url + '/types');
   }
